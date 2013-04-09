@@ -70,7 +70,7 @@ class Serializer implements SerializerInterface
         $this->navigator = new GraphNavigator($this->factory, $this->handlerRegistry, $this->objectConstructor, $this->dispatcher);
     }
 
-    public function serialize($data, $format, SerializationContext $context = null, $prefix = false)
+    public function serialize($data, $format, SerializationContext $context = null)
     {
         if ( ! $this->serializationVisitors->containsKey($format)) {
             throw new UnsupportedFormatException(sprintf('The format "%s" is not supported for serialization.', $format));
@@ -90,9 +90,7 @@ class Serializer implements SerializerInterface
         $visitor->setNavigator($this->navigator);
         $this->navigator->accept($visitor->prepare($data), null, $context);
 
-        $jsonPrefix = $prefix && $format == "json" ? ")]},\n" : "";
-
-        return $jsonPrefix.$visitor->getResult();
+        return $visitor->getResult();
     }
 
     public function deserialize($data, $type, $format, DeserializationContext $context = null)

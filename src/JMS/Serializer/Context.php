@@ -23,6 +23,7 @@ use JMS\Serializer\Exclusion\DisjunctExclusionStrategy;
 use JMS\Serializer\Exclusion\ExclusionStrategyInterface;
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
 use JMS\Serializer\Exclusion\VersionExclusionStrategy;
+use JMS\Serializer\Exclusion\DepthExclusionStrategy;
 use JMS\Serializer\Metadata\ClassMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Metadata\MetadataFactory;
@@ -169,6 +170,17 @@ abstract class Context
 
         $this->attributes->set('groups', (array) $groups);
         $this->addExclusionStrategy(new GroupsExclusionStrategy((array) $groups));
+
+        return $this;
+    }
+
+    public function setDepth($depth) {
+        if (null === $depth) {
+            throw new \LogicException('The depth must not be null.');
+        }
+
+        $this->attributes->set('depth', $depth);
+        $this->addExclusionStrategy(new DepthExclusionStrategy($depth));
 
         return $this;
     }
