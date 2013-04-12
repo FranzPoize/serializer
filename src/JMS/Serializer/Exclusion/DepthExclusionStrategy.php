@@ -36,6 +36,9 @@ class DepthExclusionStrategy implements ExclusionStrategyInterface
      */
     public function shouldSkipClass(ClassMetadata $metadata, Context $navigatorContext)
     {
+        if ($navigatorContext->getDepth() > $this->depth)
+            return true;
+        
         return false;
     }
 
