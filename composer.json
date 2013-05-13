@@ -26,9 +26,9 @@
         "twig/twig": ">=1.8,<2.0-dev",
         "doctrine/orm": ">=2.1,<2.4-dev",
         "symfony/yaml": "2.*",
-        "symfony/translation": ">=2.0,<2.2-dev",
-        "symfony/validator": ">=2.0,<2.2-dev",
-        "symfony/form": ">=2.1,<2.2-dev",
+        "symfony/translation": ">=2.0,<2.3-dev",
+        "symfony/validator": ">=2.0,<2.3-dev",
+        "symfony/form": ">=2.1,<2.3-dev",
         "symfony/filesystem": "2.*"
     },
     "autoload": {
