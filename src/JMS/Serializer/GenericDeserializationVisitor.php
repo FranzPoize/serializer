@@ -162,9 +162,9 @@ abstract class GenericDeserializationVisitor extends AbstractVisitor
     {
         $name = $this->namingStrategy->translateName($metadata);
 
-        if (null === $data || ! array_key_exists($name, $data)) {
-            return;
-        }
+        if (null === $data || !is_array($data) || ! array_key_exists($name, $data)) {
+             return;
+         }
 
         if ( ! $metadata->type) {
             throw new RuntimeException(sprintf('You must define a type for %s::$%s.', $metadata->reflection->class, $metadata->name));
